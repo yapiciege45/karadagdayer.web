@@ -35,7 +35,7 @@ export const LoginComponent = ({ router, email, password, setEmail, setPassword,
             </div>
             <div className='w-full md:w-2/3 h-full flex flex-col justify-center items-center'>
                 <div className='w-3/4 lg:w-1/2 flex flex-col items-center'>
-                    <h2 className='text-xl font-bold mt-5'>Login Karadagdayer</h2>
+                    <h2 className='text-xl font-bold mt-5'>Login KARADAGDAYER</h2>
                     <InputComponent 
                         onChange={setEmail}
                         value={email}
