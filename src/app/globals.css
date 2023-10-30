@@ -8,20 +8,48 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+body {
+  font-family: var(--font-family);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.swiper-button-next {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 100;
+  width:36px;
+  height:36px;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.swiper-button-next:after {
+  width:16px;
+  height: 20px;
+  color: white;
+  content: url('../../public/chevron-right.svg');
+}
+
+.swiper-button-prev {
+  position: absolute;
+  bottom: 10px;
+  right: 60px;
+  z-index: 100;
+  width:36px;
+  height:36px;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.swiper-button-prev:after {
+  width:18px;
+  height: 18px;
+  color: white;
+  content: url('../../public/chevron-left.svg');
 }
