@@ -28,3 +28,14 @@ export const getCustomers = async (search = '') => {
 
     return searchedCustomers
 }
+
+export const searchCustomers = async (customers, search = '') => {
+    const searchCustomers = customers.filter(x => {
+        const fullName = x.name + ' ' + x.surname
+        const isTrue = fullName.toLowerCase().search(search.toLowerCase()) > -1
+
+        return isTrue
+    })
+
+    return searchCustomers
+}
