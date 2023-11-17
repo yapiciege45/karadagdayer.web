@@ -68,6 +68,7 @@ export const AdminCustomerPageComponent = ({
               company_setup_date={x.company_setup_date}
               company_name={x.company_name}
               address={x.address}
+              note={x.note}
             />
           );
         })}

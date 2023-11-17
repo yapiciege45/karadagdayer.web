@@ -1,160 +1,202 @@
-import { ButtonComponent } from '@/components/shared/ButtonComponent'
-import { HiddenInputComponent } from '@/components/shared/HiddenInputComponent'
-import { ImageSettingComponent } from '@/components/shared/ImageSettingComponent'
-import { SettingComponent } from '@/components/shared/SettingComponent'
-import Image from 'next/image'
-import React from 'react'
+import { ButtonComponent } from "@/components/shared/ButtonComponent";
+import { HiddenInputComponent } from "@/components/shared/HiddenInputComponent";
+import { ImageSettingComponent } from "@/components/shared/ImageSettingComponent";
+import { SettingComponent } from "@/components/shared/SettingComponent";
+import Image from "next/image";
+import React from "react";
 
-export const CustomerHomePageComponent = ({ setPassportImg, setProxyImg, passportVerify, setCriminalRecordImg, setDiplomaImg, user, type, name, setName, surname, setSurname, email, setEmail, phone, setPhone, phoneCode, setPhoneCode, companyName, setCompanyName, address, setAddress, debt, setDebt, payment, setPayment, proxy, setProxy, diploma, setDiploma, criminalRecord, passport, setCriminalRecord, proxyVerify, setProxyVerify, diplomaVerify, setDiplomaVerify, criminalRecordVerify, setCriminalRecordVerify, sessionDate, setSessionDate, sessionEndDate, setSessionEndDate, companySetupDate, setCompanySetupDate, save }) => {
+export const CustomerHomePageComponent = ({
+  setPassportImg,
+  setProxyImg,
+  passportVerify,
+  setCriminalRecordImg,
+  setDiplomaImg,
+  user,
+  type,
+  name,
+  setName,
+  surname,
+  setSurname,
+  email,
+  setEmail,
+  phone,
+  setPhone,
+  phoneCode,
+  setPhoneCode,
+  companyName,
+  setCompanyName,
+  address,
+  setAddress,
+  debt,
+  setDebt,
+  payment,
+  setPayment,
+  proxy,
+  setProxy,
+  diploma,
+  setDiploma,
+  criminalRecord,
+  passport,
+  setCriminalRecord,
+  proxyVerify,
+  setProxyVerify,
+  diplomaVerify,
+  setDiplomaVerify,
+  criminalRecordVerify,
+  setCriminalRecordVerify,
+  sessionDate,
+  setSessionDate,
+  sessionEndDate,
+  setSessionEndDate,
+  companySetupDate,
+  setCompanySetupDate,
+  save,
+}) => {
   return (
-    <div className='w-full md:w-3/4 h-screen overflow-y-scroll p-5'>
-      <div className='flex items-center w-full flex-col md:flex-row'>
-        {
-          user.img ? (
-            <Image 
-              width={96}
-              height={96}
-              src={user.img}
-              className='rounded-full ml-5 md:ml-0'
-            />
-          ) : (
-            <Image 
-              width={96}
-              height={96}
-              src={'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'}
-              className='rounded-full ml-5 md:ml-0'
-            />
-          )
-        }
-        <div className='flex flex-col items-center md:items-start ml-5 mt-3 md:mt-0'>
-          <p>{name + ' ' + surname}</p>
-          <p className='uppercase'>{type}</p>
+    <div className="w-full md:w-3/4 h-screen overflow-y-scroll p-5">
+      <div className="flex items-center w-full flex-col md:flex-row">
+        {user.img ? (
+          <Image
+            width={96}
+            height={96}
+            src={user.img}
+            className="rounded-full ml-5 md:ml-0"
+          />
+        ) : (
+          <Image
+            width={96}
+            height={96}
+            src={
+              "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+            }
+            className="rounded-full ml-5 md:ml-0"
+          />
+        )}
+        <div className="flex flex-col items-center md:items-start ml-5 mt-3 md:mt-0">
+          <p>{name + " " + surname}</p>
+          <p className="uppercase">{type}</p>
         </div>
       </div>
-      <div className='flex flex-col mt-8'>
-        <SettingComponent 
-          name='Name'
+      <div className="flex flex-col mt-8">
+        <SettingComponent
+          name="İsim"
           onChange={setName}
           value={name}
-          type='text'
+          type="text"
           editable={false}
         />
-        <SettingComponent 
-          name='Surname'
+        <SettingComponent
+          name="Soyisim"
           onChange={setSurname}
           value={surname}
-          type='text'
-          className='mt-5'
+          type="text"
+          className="mt-5"
           editable={false}
         />
-        <SettingComponent 
-          name='E-mail'
+        <SettingComponent
+          name="E-posta"
           onChange={setEmail}
           value={email}
-          type='email'
-          className='mt-5'
+          type="email"
+          className="mt-5"
           editable={false}
         />
-        <SettingComponent 
-          name='Phone Code'
+        <SettingComponent
+          name="Telefon Kodu"
           onChange={setPhoneCode}
           value={phoneCode}
-          type='text'
-          className='mt-5'
+          type="text"
+          className="mt-5"
         />
-        <SettingComponent 
-          name='Phone'
+        <SettingComponent
+          name="Telefon"
           onChange={setPhone}
           value={phone}
-          type='text'
-          className='mt-5'
+          type="text"
+          className="mt-5"
         />
-        <SettingComponent 
-          name='Company Name'
+        <SettingComponent
+          name="Şirket Adı"
           onChange={setCompanyName}
           value={companyName}
-          className='mt-5'
+          className="mt-5"
           editable={false}
         />
-        <SettingComponent 
-          name='Address'
+        <SettingComponent
+          name="Adres"
           onChange={setAddress}
           value={address}
-          className='mt-5'
+          className="mt-5"
           editable={false}
         />
-        <SettingComponent 
-          name='Debt'
+        <SettingComponent
+          name="Ödenmesi Gereken"
           onChange={setDebt}
           value={debt}
-          className='mt-5'
+          className="mt-5"
           editable={false}
         />
-        <SettingComponent 
-          name='Payment'
+        <SettingComponent
+          name="Ödenen"
           onChange={setPayment}
           value={payment}
-          className='mt-5'
+          className="mt-5"
           editable={false}
         />
-        <ImageSettingComponent 
-          name='Proxy'
+        <ImageSettingComponent
+          name="Vekalet"
           onChange={setProxyImg}
           value={proxy}
-          className='mt-5'
+          className="mt-5"
           editable={!proxyVerify}
         />
-        <ImageSettingComponent 
-          name='Passport'
+        <ImageSettingComponent
+          name="Pasaport"
           onChange={setPassportImg}
           value={passport}
-          className='mt-5'
+          className="mt-5"
           editable={!passportVerify}
         />
-        <ImageSettingComponent 
-          name='Diploma'
+        <ImageSettingComponent
+          name="Diploma"
           onChange={setDiplomaImg}
           value={diploma}
-          className='mt-5'
+          className="mt-5"
           editable={!diplomaVerify}
         />
-        <ImageSettingComponent 
-          name='Criminal Record'
+        <ImageSettingComponent
+          name="Adli Sicil Kaydı"
           onChange={setCriminalRecordImg}
           value={criminalRecord}
-          className='mt-5'
+          className="mt-5"
           editable={!criminalRecordVerify}
         />
-        <SettingComponent 
-          name='Session Date'
+        <SettingComponent
+          name="Geliş Tarihi"
           onChange={setSessionDate}
           value={sessionDate}
-          className='mt-5'
+          className="mt-5"
           editable={false}
         />
-        <SettingComponent 
-          name='Session End Date'
+        <SettingComponent
+          name="Oturum Bitiş Tarihi"
           onChange={setSessionEndDate}
           value={sessionEndDate}
-          className='mt-5'
+          className="mt-5"
           editable={false}
         />
-        <SettingComponent 
-          name='Company Setup Date'
+        <SettingComponent
+          name="Şirket Kuruluş Tarihi"
           onChange={setCompanySetupDate}
           value={companySetupDate}
-          className='mt-5'
+          className="mt-5"
           editable={false}
         />
       </div>
-      <ButtonComponent
-        onClick={save}
-        buttonText='Save Changes'
-        className='mt-8'
-      />
-      <div className='flex md:hidden'>
-        <div className='h-16 w-full'></div>
+      <ButtonComponent onClick={save} buttonText="Kaydet" className="mt-8" />
+      <div className="flex md:hidden">
+        <div className="h-16 w-full"></div>
       </div>
     </div>
-  )
-}
+  );
+};

@@ -36,12 +36,11 @@ export const AdminCustomerComponent = ({
   password = "",
   phoneCode = "",
   phone = "",
+  note,
   distributorId = 0,
   packageId,
   getCustomers,
 }) => {
-  console.log(name);
-
   const [changableName, setChangableName] = useState(name);
   const [changableSurname, setChangableSurname] = useState(surname);
   const [changableEmail, setChangableEmail] = useState(email);
@@ -77,6 +76,13 @@ export const AdminCustomerComponent = ({
   );
   const [changablePackageId, setChangablePackageId] = useState(packageId);
   const [changableImg, setChangableImg] = useState(img);
+  const [changableNote, setChangableNote] = useState(note);
+
+  const [changableProxyFile, setChangableProxyFile] = useState(null);
+  const [changablePassportFile, setChangablePassportFile] = useState(null);
+  const [changableDiplomaFile, setChangableDiplomaFile] = useState(null);
+  const [changableCriminalRecordFile, setChangableCriminalRecordFile] =
+    useState(null);
 
   useEffect(() => {
     setChangableName(name);
@@ -99,8 +105,10 @@ export const AdminCustomerComponent = ({
     setChangableImg(img);
     setChangablePackageId(packageId);
     setChangableDistributorId(distributorId);
+    setChangableNote(note);
   }, [
     name,
+    note,
     surname,
     email,
     company_name,
@@ -235,6 +243,7 @@ export const AdminCustomerComponent = ({
           passport_verify: changablePassportVerify,
           diploma_verify: changableDiplomaVerify,
           criminal_record_verify: changableCriminalRecordVerify,
+          note: changableNote,
         }),
       });
     } else {
@@ -265,8 +274,97 @@ export const AdminCustomerComponent = ({
           passport_verify: changablePassportVerify,
           diploma_verify: changableDiplomaVerify,
           criminal_record_verify: changableCriminalRecordVerify,
+          note: changableNote,
         }),
       });
+    }
+
+    if (changableProxyFile) {
+      const proxyRes = await fetch(
+        `${process.env.API_URL}/customer/add/proxy/${id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "image/jpeg",
+            Authorization: `Bearer ${token}`,
+          },
+          body: changableProxyFile,
+        },
+      );
+
+      const proxyResData = await proxyRes.json();
+
+      if (proxyResData.status == 200) {
+        toast.success(proxyResData.message);
+      } else {
+        toast.error("An error happened");
+      }
+    }
+
+    if (changableDiplomaFile) {
+      const diplomaRes = await fetch(
+        `${process.env.API_URL}/customer/add/diploma/${id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "image/jpeg",
+            Authorization: `Bearer ${token}`,
+          },
+          body: changableDiplomaFile,
+        },
+      );
+
+      const diplomaResData = await diplomaRes.json();
+
+      if (diplomaResData.status == 200) {
+        toast.success(diplomaResData.message);
+      } else {
+        toast.error("An error happened");
+      }
+    }
+
+    if (changablePassportFile) {
+      const diplomaRes = await fetch(
+        `${process.env.API_URL}/customer/add/passport/${id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "image/jpeg",
+            Authorization: `Bearer ${token}`,
+          },
+          body: changablePassportFile,
+        },
+      );
+
+      const diplomaResData = await diplomaRes.json();
+
+      if (diplomaResData.status == 200) {
+        toast.success(diplomaResData.message);
+      } else {
+        toast.error("An error happened");
+      }
+    }
+
+    if (changableCriminalRecordFile) {
+      const criminalRecordRes = await fetch(
+        `${process.env.API_URL}/customer/add/criminal-record/${id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "image/jpeg",
+            Authorization: `Bearer ${token}`,
+          },
+          body: changableCriminalRecordFile,
+        },
+      );
+
+      const criminalRecordResData = await criminalRecordRes.json();
+
+      if (criminalRecordResData.status == 200) {
+        toast.success(criminalRecordResData.message);
+      } else {
+        toast.error("An error happened");
+      }
     }
 
     const data = await res.json();
@@ -465,6 +563,11 @@ export const AdminCustomerComponent = ({
             />
           </div>
           <div className="w-full flex justify-between items-center md:w-[49%]">
+            <input
+              type="file"
+              name="image"
+              onChange={(e) => setChangableProxyFile(e.target.files[0])}
+            />
             <CheckboxComponent
               onChange={setChangableProxyVerify}
               value={changableProxyVerify}
@@ -485,6 +588,11 @@ export const AdminCustomerComponent = ({
         </div>
         <div className="flex flex-wrap justify-between items-center mt-5">
           <div className="w-full flex justify-between items-center md:w-[49%]">
+            <input
+              type="file"
+              name="image"
+              onChange={(e) => setChangableDiplomaFile(e.target.files[0])}
+            />
             <CheckboxComponent
               onChange={setChangableDiplomaVerify}
               value={changableDiplomaVerify}
@@ -503,6 +611,14 @@ export const AdminCustomerComponent = ({
             )}
           </div>
           <div className="w-full flex justify-between items-center md:w-[49%]">
+            <input
+              type="file"
+              name="image"
+              onChange={(e) =>
+                setChangableCriminalRecordFile(e.target.files[0])
+              }
+            />
+
             <CheckboxComponent
               onChange={setChangableCriminalRecordVerify}
               value={changableCriminalRecordVerify}
@@ -523,6 +639,12 @@ export const AdminCustomerComponent = ({
         </div>
         <div className="flex flex-wrap justify-between items-center mt-5">
           <div className="w-full flex justify-between items-center md:w-[49%]">
+            <input
+              type="file"
+              name="image"
+              onChange={(e) => setChangablePassportFile(e.target.files[0])}
+            />
+
             <CheckboxComponent
               onChange={setChangablePassportVerify}
               value={changablePassportVerify}
@@ -539,6 +661,21 @@ export const AdminCustomerComponent = ({
             ) : (
               <p className="text-xs w-1/2 text-blue-500">(Not Uploaded)</p>
             )}
+          </div>
+        </div>
+        <div className="flex flex-wrap justify-between items-center mt-5">
+          <div className="w-full mt-2 md:mt-0 flex flex-col">
+            <p className="text-xs font-light text-black">Customer Notes</p>
+            <textarea
+              placeholder="Customer Note"
+              cols={5}
+              rows={5}
+              className="border rounded-xl text-xs font-light p-3"
+              onChange={(e) => setChangableNote(e.target.value)}
+              value={changableNote}
+            >
+              {changableNote}
+            </textarea>
           </div>
         </div>
         <div className="flex flex-wrap justify-between items-center mt-5">
