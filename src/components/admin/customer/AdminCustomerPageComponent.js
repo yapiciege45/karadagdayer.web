@@ -17,6 +17,7 @@ export const AdminCustomerPageComponent = ({
   search,
   setSearch,
 }) => {
+  console.log(customers);
   return (
     <div className="w-full md:w-3/4 h-screen overflow-y-scroll p-5 flex flex-col">
       <div className="w-full flex justify-between items-center">
